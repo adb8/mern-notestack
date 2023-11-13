@@ -1,0 +1,258 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	padding: 0;
+	margin: 0;
+	color: whitesmoke;
+	font-family: "Gabarito", sans-serif;
+}
+
+body::-webkit-scrollbar {
+	display: none;
+}
+
+.left-page-cont {
+	flex: 0.62;
+	height: 100vh;
+}
+
+.right-page-cont {
+	background-color: rgb(26, 26, 26);
+	flex: 0.38;
+	height: 100vh;
+}
+
+.authsearch-cont {
+	height: 320px;
+	width: 370px;
+	margin: 25px 0px;
+
+	background-color: rgb(32, 32, 32);
+	border-radius: 12px;
+}
+
+.authsearch-cont div {
+	margin-bottom: 20px;
+	font-size: 22px;
+}
+
+.authsearch-cont input {
+	color: black;
+	outline: none;
+
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18.5px;
+
+	width: 280px;
+	height: 45px;
+	padding: 5px;
+	margin: 8px;
+}
+
+.authsearch-cont button {
+	color: white;
+	font-size: 18px;
+	transition: all 0.2s ease-in-out;
+	cursor: pointer;
+	background-color: rgb(30, 30, 30);
+
+	border: solid thin rgb(120, 120, 120);
+	border-radius: 5px;
+	outline: none;
+
+	padding: 6px 15px;
+	margin-top: 20px;
+	width: 130px;
+}
+
+.authsearch-cont button:hover {
+	background-color: rgb(51, 51, 51);
+}
+
+.full-page-cont {
+	min-height: 100vh;
+	text-align: center;
+
+	background-color: rgba(15, 15, 15);
+	background-image: url("../public/background.png");
+	background-repeat: repeat;
+	background-size: 15%;
+}
+
+.logo-cont {
+	width: 520px;
+	margin-bottom: 60px;
+}
+
+.notestack-logo {
+	font-family: "Alfa Slab One", cursive;
+	font-size: 100px;
+}
+
+.notestack-desc {
+	font-size: 28.8px;
+	margin-top: 20px;
+}
+
+.logo-desc-bar {
+	width: 100%;
+	border: solid white 2px;
+	border-radius: 2px;
+}
+
+.header-cont {
+	width: 100%;
+	height: 80px;
+	padding: 0px 50px;
+
+	background-color: rgb(30, 30, 30);
+	border-bottom: solid thin rgb(60, 60, 60);
+}
+
+.header-text {
+	font-size: 22px;
+	margin-right: 40px;
+}
+
+.header-cont input {
+	color: black;
+	outline: none;
+
+	border-radius: 5px;
+	text-align: center;
+	font-size: 18px;
+
+	width: 280px;
+	height: 38px;
+	margin: 0px 10px;
+}
+
+.header-cont button {
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+	background-color: rgb(30, 30, 30);
+
+	border: solid thin rgb(120, 120, 120);
+	border-radius: 5px;
+	outline: none;
+
+	width: 150px;
+	height: 40px;
+	margin: 0px 10px;
+	transition: all 0.2s ease-in-out;
+}
+
+.header-cont button:hover {
+	background-color: rgb(51, 51, 51);
+}
+
+.notes-cont {
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 20px;
+
+	width: 1100px;
+	column-count: 3;
+	column-gap: 20px;
+}
+
+.note-item {
+	background-color: rgb(30, 30, 30);
+	border: solid thin rgb(60, 60, 60);
+	border-radius: 5px;
+
+	display: inline-block;
+	width: 100%;
+	padding: 15px;
+	margin-bottom: 20px;
+
+	text-align: left;
+	word-wrap: break-word;
+}
+
+.note-content {
+	max-height: 500px;
+	overflow-y: auto;
+}
+
+.note-content::-webkit-scrollbar {
+	display: none;
+}
+
+.note-author-date {
+	color: rgb(160, 160, 160);
+	margin-bottom: 8px;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-cont {
+	height: 500px;
+	width: 520px;
+	margin: 0px 25px;
+	padding: 20px;
+
+	border-radius: 8px;
+	border: solid thin rgb(80, 80, 80);
+	background-color: rgb(30, 30, 30);
+}
+
+.modal-cont input {
+	color: white;
+	outline: none;
+	background-color: rgb(30, 30, 30);
+
+	width: 480px;
+	height: 40px;
+	width: 100%;
+
+	padding: 10px;
+	font-size: 18px;
+}
+
+.modal-cont textarea {
+	color: white;
+	font-size: 18px;
+	outline: none;
+	resize: none;
+
+	background-color: rgb(30, 30, 30);
+	margin-bottom: 20px;
+	padding: 10px;
+	height: 360px;
+}
+
+.modal-cont button {
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+
+	background-color: rgb(30, 30, 30);
+	outline: none;
+	border: solid thin rgb(120, 120, 120);
+	border-radius: 5px;
+
+	width: 120px;
+	height: 40px;
+	margin: 0px 10px;
+	transition: all 0.2s ease-in-out;
+}
+
+.modal-cont button:hover {
+	background-color: rgb(51, 51, 51);
+}

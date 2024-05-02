@@ -5,7 +5,7 @@ class Auth {
 		this.authenticated = false;
 		this.username = "";
 		this.stackName = "";
-		this.stackId = null;
+		this.stackId = "";
 	}
 
 	async signup(username, password) {
@@ -15,20 +15,17 @@ class Auth {
 				message: "Please fill in all fields",
 			};
 		}
-
 		if (username.length < 5 || password.length < 5) {
 			return {
 				success: false,
 				message: "Username and password must be at least 5 characters long",
 			};
 		}
-
 		const response = await axios.post("http://localhost:5000/users/add", {
 			username: username,
 			password: password,
 		});
 		const data = response.data;
-
 		if (data.message === "Account successfully created") {
 			this.authenticated = true;
 			this.username = username;
@@ -37,7 +34,6 @@ class Auth {
 				message: data.message,
 			};
 		}
-
 		this.authenticated = false;
 		return {
 			success: false,
@@ -52,13 +48,11 @@ class Auth {
 				message: "Please fill in all fields",
 			};
 		}
-
 		const response = await axios.post("http://localhost:5000/users/login", {
 			username: username,
 			password: password,
 		});
 		const data = response.data;
-
 		if (data.message === "Login successful") {
 			this.authenticated = true;
 			this.username = username;
@@ -67,7 +61,6 @@ class Auth {
 				message: data.message,
 			};
 		}
-
 		this.authenticated = false;
 		return {
 			success: false,
@@ -82,22 +75,23 @@ class Auth {
 				message: "Please fill in all fields",
 			};
 		}
-
 		const response = await axios.post("http://localhost:5000/stacks/open", {
 			name: name,
 			code: code,
 		});
 		const data = response.data;
-
 		if (data.message === "Stack successfully opened") {
-			this.stackId = data.stackId;
-			this.stackName = name;
+            if (data.stackId !== null && data.stackId !== undefined && data.stackId !== "") {
+                this.stackId = data.stackId;
+                console.log(data.stackId, name, code)
+                console.log(this.stackId);
+                this.stackName = name;
+            }
 			return {
 				success: true,
 				message: data.message,
 			};
 		}
-
 		return {
 			success: false,
 			message: data.message,
@@ -111,22 +105,21 @@ class Auth {
 				message: "Please fill in all fields",
 			};
 		}
-
 		const response = await axios.post("http://localhost:5000/stacks/add", {
 			name: name,
 			code: code,
 		});
 		const data = response.data;
-
 		if (data.message === "Stack successfully created") {
-			this.stackId = data.stackId;
-			this.stackName = name;
+            if (data.stackId !== null && data.stackId !== undefined && data.stackId !== "") {
+                this.stackId = data.stackId;
+                this.stackName = name;
+            }
 			return {
 				success: true,
 				message: data.message,
 			};
 		}
-
 		return {
 			success: false,
 			message: data.success,
@@ -134,9 +127,9 @@ class Auth {
 	}
 
 	async getNotes() {
-		const response = await axios.get("http://localhost:5000/stacks/" + this.stackId);
+        console.log(this.stackId);
+		const response = await axios.get("http://localhost:5000/stacks/" + this.stackId.toString());
 		const data = response.data;
-
 		if (data.message === "Stack notes successfully retrieved") {
 			return {
 				success: true,
@@ -144,7 +137,6 @@ class Auth {
 				notes: data.notes,
 			};
 		}
-
 		return {
 			success: true,
 			message: data.message,
@@ -159,7 +151,8 @@ class Auth {
 				message: "Please fill in all fields",
 			};
 		}
-
+        console.log(this)
+        console.log(this.stackId, this.username, title, content, new Date().toDateString());
 		const response = await axios.post("http://localhost:5000/stacks/" + this.stackId + "/add", {
 			author: this.username,
 			title: title,
@@ -167,14 +160,12 @@ class Auth {
 			date: new Date().toDateString(),
 		});
 		const data = response.data;
-
 		if (data.message === "Note successfully added") {
 			return {
 				success: true,
 				message: data.message,
 			};
 		}
-
 		return {
 			success: false,
 			message: data.message,
